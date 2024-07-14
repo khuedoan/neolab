@@ -2,7 +2,7 @@
   description = "Horus";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -28,6 +28,7 @@
             pre-commit
             shellcheck
             sops
+            step-cli
             timoni
             wireguard-tools
             yamllint

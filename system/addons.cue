@@ -25,5 +25,34 @@ bundle: {
 				}
 			}
 		}
+		"linkerd-crds": {
+			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
+			namespace: "linkerd"
+			values: {
+				repository: url: "https://helm.linkerd.io/stable"
+				chart: {
+					name:    "linkerd-crds"
+					version: "1.8.0"
+				}
+			}
+		}
+		"linkerd-control-plane": {
+			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
+			namespace: "linkerd"
+			values: {
+				repository: url: "https://helm.linkerd.io/stable"
+				chart: {
+					name:    "linkerd-control-plane"
+					version: "1.16.11"
+				}
+				helmValues: {
+					identityTrustAnchorsPEM: string @timoni(runtime:string:linkerd_ca_crt)
+					identity: issuer: tls: {
+						crtPEM: string @timoni(runtime:string:linkerd_issuer_crt)
+						keyPEM: string @timoni(runtime:string:linkerd_issuer_key)
+					}
+				}
+			}
+		}
 	}
 }
