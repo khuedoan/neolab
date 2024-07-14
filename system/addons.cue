@@ -65,5 +65,24 @@ bundle: {
 				}
 			}
 		}
+		"ingress-nginx": {
+			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
+			namespace: "ingress-nginx"
+			values: {
+				repository: url: "https://kubernetes.github.io/ingress-nginx"
+				chart: {
+					name:    "ingress-nginx"
+					version: "4.11.0"
+				}
+				helmValues: {
+					controller: {
+						ingressClassResource: default: true
+						podAnnotations: {
+							"linkerd.io/inject": "enabled"
+						}
+					}
+				}
+			}
+		}
 	}
 }
