@@ -14,6 +14,9 @@ bundle: {
 					version: "3.1.0"
 				}
 				helmValues: {
+					defaultPodOptions: annotations: {
+						"linkerd.io/inject": "enabled"
+					}
 					controllers: main: containers: app: {
 						image: {
 							// TODO

@@ -12,6 +12,9 @@ bundle: {
 					version: "3.1.0"
 				}
 				helmValues: {
+					defaultPodOptions: annotations: {
+						"linkerd.io/inject": "enabled"
+					}
 					controllers: main: containers: app: {
 						image: {
 							repository: "lscr.io/linuxserver/wireguard"
@@ -35,11 +38,6 @@ bundle: {
 						ListenPort = 51820
 						PostUp = wg set %i private-key <(echo ${PRIVATE_KEY}); iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth+ -j MASQUERADE
 						PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o eth+ -j MASQUERADE
-
-						[Peer]
-						# Horus
-						PublicKey = +0Ke3rl5BDa3a/dk9Vv18a1bnT9rIX8kmcpONwcSM1U=
-						AllowedIPs = 10.13.13.1/32
 
 						[Peer]
 						# Test device

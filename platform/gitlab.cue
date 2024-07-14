@@ -12,6 +12,9 @@ bundle: {
 					version: "3.1.0"
 				}
 				helmValues: {
+					defaultPodOptions: annotations: {
+						"linkerd.io/inject": "enabled"
+					}
 					controllers: main: {
 						type: "statefulset"
 						containers: app: {
@@ -22,13 +25,13 @@ bundle: {
 							env: {
 								GITLAB_ROOT_PASSWORD: string @timoni(runtime:string:gitlab_root_password)
 								GITLAB_OMNIBUS_CONFIG: """
-                                    external_url 'http://gitlab.127-0-0-1.nip.io'
+									external_url 'http://gitlab.127-0-0-1.nip.io'
 
-                                    gitlab_rails['omniauth_enabled'] = false
-                                    prometheus_monitoring['enable'] = false
-                                    puma['worker_processes'] = 0
-                                    sidekiq['concurrency'] = 10
-                                """
+									gitlab_rails['omniauth_enabled'] = false
+									prometheus_monitoring['enable'] = false
+									puma['worker_processes'] = 0
+									sidekiq['concurrency'] = 10
+									"""
 							}
 						}
 					}
@@ -86,16 +89,20 @@ bundle: {
 				helmValues: {
 					gitlabUrl: "http://gitlab"
 					rbac: create: true
+					podAnnotations: {
+						"linkerd.io/inject": "enabled"
+					}
 					runners: {
 						secret: "gitlab-runner-secret"
 						config: """
-                            [[runners]]
-                                clone_url = "http://gitlab"
-                                [runners.kubernetes]
-                                    namespace = "{{.Release.Namespace}}"
-                                    image = "alpine"
-                                    privileged = true
-                        """
+							[[runners]]
+							    clone_url = "http://gitlab"
+							    [runners.kubernetes]
+							        namespace = "{{.Release.Namespace}}"
+							        pod_annotations = "linkerd.io/inject=enabled"
+							        image = "alpine"
+							        privileged = true
+							"""
 					}
 				}
 			}
