@@ -27,11 +27,46 @@ bundle: {
 								GITLAB_OMNIBUS_CONFIG: """
 									external_url 'http://gitlab.127-0-0-1.nip.io'
 
+									gitlab_rails['monitoring_whitelist'] = ['0.0.0.0/0']
 									gitlab_rails['omniauth_enabled'] = false
 									prometheus_monitoring['enable'] = false
 									puma['worker_processes'] = 0
 									sidekiq['concurrency'] = 10
 									"""
+							}
+							probes: {
+								startup: {
+									enabled: true
+									custom:  true
+									spec: {
+										httpGet: {
+											path: "/-/liveness"
+											port: 80
+										}
+										initialDelaySeconds: 30
+										failureThreshold:    20
+									}
+								}
+								liveness: {
+									enabled: true
+									custom:  true
+									spec: {
+										httpGet: {
+											path: "/-/liveness"
+											port: 80
+										}
+									}
+								}
+								readiness: {
+									enabled: true
+									custom:  true
+									spec: {
+										httpGet: {
+											path: "/-/readiness"
+											port: 80
+										}
+									}
+								}
 							}
 						}
 					}
@@ -62,6 +97,9 @@ bundle: {
 						}
 					}
 					ingress: main: {
+						annotations: {
+							"nginx.ingress.kubernetes.io/proxy-body-size": "5m"
+						}
 						hosts: [{
 							// TODO domain from runtime
 							host: "gitlab.127-0-0-1.nip.io"
@@ -99,9 +137,7 @@ bundle: {
 							    clone_url = "http://gitlab"
 							    [runners.kubernetes]
 							        namespace = "{{.Release.Namespace}}"
-							        pod_annotations = "linkerd.io/inject=enabled"
 							        image = "alpine"
-							        privileged = true
 							"""
 					}
 				}
