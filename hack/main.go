@@ -18,5 +18,11 @@ func main() {
 		panic(err.Error())
 	}
 
-	setupGitLabRunner(kubeClient)
+	gitlabClient, err := newGitLabClient()
+	if err != nil {
+		panic(err.Error())
+	}
+
+	updateGitLabSettings(gitlabClient)
+	setupGitLabRunner(gitlabClient, kubeClient)
 }
