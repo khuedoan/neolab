@@ -20,7 +20,7 @@ bundle: {
 					controllers: main: containers: app: {
 						image: {
 							repository: "docker.io/khuedoan/backstage"
-							tag:        "latest@sha256:ba031ccc1c7b9461c15b6046fa03657f2d3184325cec8c08a1d480a06f24c021"
+							tag:        "latest@sha256:7de229a1beeaf29abcfd0c6613c95c63e4eb7762738b2af788c98b36bdb02bdd"
 						}
 						env: {
 							TESTFOO: string @timoni(runtime:string:testfoo)
@@ -30,14 +30,20 @@ bundle: {
 						app: baseUrl: "https://backstage.127-0-0-1.nip.io"
 						backend: {
 							baseUrl: "https://backstage.127-0-0-1.nip.io"
+							reading: allow: [{
+								host: "gitea-http.gitea:3000"
+							}]
 						}
 						integrations: {
-							gitlab: [{
-								host:       "gitlab.127-0-0-1.nip.io"
-								baseUrl:    "http://gitlab.gitlab"
-								apiBaseUrl: "http://gitlab.gitlab/api/v4"
-								token:      "TODO"
+							gitea: [{
+								host:     "gitea.127-0-0-1.nip.io"
+								baseUrl:  "http://gitea-http.gitea:3000"
+								username: "gitea_admin"
+								password: string @timoni(runtime:string:gitea_admin_password)
 							}]
+						}
+						techdocs: {
+							generator: runIn: "local"
 						}
 					})
 					persistence: config: {
