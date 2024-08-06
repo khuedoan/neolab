@@ -31,6 +31,14 @@ bundle: {
 						backend: {
 							baseUrl: "https://backstage.127-0-0-1.nip.io"
 						}
+						integrations: {
+							gitlab: [{
+								host:       "gitlab.127-0-0-1.nip.io"
+								baseUrl:    "http://gitlab.gitlab"
+								apiBaseUrl: "http://gitlab.gitlab/api/v4"
+								token:      "TODO"
+							}]
+						}
 					})
 					persistence: config: {
 						type:       "configMap"
@@ -60,7 +68,7 @@ bundle: {
 						}]
 						tls: [{
 							hosts: [
-                                "backstage.127-0-0-1.nip.io"
+								"backstage.127-0-0-1.nip.io",
 							]
 						}]
 					}
