@@ -20,6 +20,7 @@ platform:
 
 apps:
 	sops exec-env ./secrets/${env}.enc.yaml 'timoni bundle apply --runtime-from-env --file apps/blog.cue'
+	sops exec-env ./secrets/${env}.enc.yaml 'timoni bundle apply --runtime-from-env --file apps/backstage.cue'
 
 hack:
 	sops exec-env ./secrets/${env}.enc.yaml 'cd hack && go run .'
