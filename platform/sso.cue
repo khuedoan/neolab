@@ -43,6 +43,11 @@ bundle: {
 							name: "Gitea"
 							redirectURIs: ["http://gitea.127-0-0-1.nip.io/user/oauth2/Dex/callback"]
 							secret: "dev_secret_sso_gitea" // TODO autogen?
+						}, {
+							id:   "backstage"
+							name: "Backstage"
+							redirectURIs: ["http://backstage.127-0-0-1.nip.io/user/oauth2/Dex/callback"]
+							secret: "dev_secret_sso_backstage" // TODO autogen?
 						}]
 					}
 					ingress: {
