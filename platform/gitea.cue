@@ -48,6 +48,9 @@ bundle: {
 								ALLOWED_HOST_LIST: "private"
 							}
 						}
+						podAnnotations: {
+							"linkerd.io/inject": "enabled"
+						}
 					}
 				}
 			}
