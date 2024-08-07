@@ -26,6 +26,7 @@ bundle: {
 						admin: {
 							username: "gitea_admin"
 							password: string @timoni(runtime:string:gitea_admin_password)
+							email:    "admin@example.com"
 						}
 						config: {
 							server: {
@@ -38,6 +39,12 @@ bundle: {
 								DISABLE_STARS:       true
 								DEFAULT_BRANCH:      "master"
 							}
+							// TODO waiting for Gitea v1.23 https://github.com/go-gitea/gitea/pull/30622
+							// oauth2_client: {
+							// 	ENABLE_AUTO_REGISTRATION: true
+							// 	OPENID_CONNECT_SCOPES: "email profile"
+							// 	USERNAME: "username"
+							// }
 							"service.explore": {
 								DISABLE_USERS_PAGE: true
 							}

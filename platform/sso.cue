@@ -27,9 +27,15 @@ bundle: {
 						}
 						enablePasswordDB: true
 						staticPasswords: [{
-							email:    "demo@example.com"
-							username: "demo"
+							email:    "admin@example.com"
+							username: "admin"
 							userID:   "08a8684b-db88-4b73-90a9-3cd1661f5466"
+							// TODO echo password | htpasswd -BinC 10 admin | cut -d: -f2
+							hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
+						}, {
+							email:    "khuedoan@example.com"
+							username: "khuedoan"
+							userID:   "9c62f819-fe97-4f8a-a3cf-b909756f0f72"
 							// TODO echo password | htpasswd -BinC 10 admin | cut -d: -f2
 							hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
 						}]
