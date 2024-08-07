@@ -27,16 +27,16 @@ bundle: {
 						}
 					}
 					configMaps: config: data: "config.yaml": yaml.Marshal({
-						app: baseUrl: "https://backstage.127-0-0-1.nip.io"
+						app: baseUrl: "https://backstage.172-22-0-2.nip.io"
 						backend: {
-							baseUrl: "https://backstage.127-0-0-1.nip.io"
+							baseUrl: "https://backstage.172-22-0-2.nip.io"
 							reading: allow: [{
 								host: "gitea-http.gitea:3000"
 							}]
 						}
 						integrations: {
 							gitea: [{
-								host:     "gitea.127-0-0-1.nip.io"
+								host:     "gitea.172-22-0-2.nip.io"
 								baseUrl:  "http://gitea-http.gitea:3000"
 								username: "gitea_admin"
 								password: string @timoni(runtime:string:gitea_admin_password)
@@ -63,7 +63,7 @@ bundle: {
 					}
 					ingress: main: {
 						hosts: [{
-							host: "backstage.127-0-0-1.nip.io"
+							host: "backstage.172-22-0-2.nip.io"
 							paths: [{
 								path:     "/"
 								pathType: "Prefix"
@@ -74,7 +74,7 @@ bundle: {
 						}]
 						tls: [{
 							hosts: [
-								"backstage.127-0-0-1.nip.io",
+								"backstage.172-22-0-2.nip.io",
 							]
 						}]
 					}

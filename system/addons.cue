@@ -80,6 +80,7 @@ bundle: {
 						podAnnotations: {
 							"linkerd.io/inject": "enabled"
 						}
+						service: loadBalancerIP: "172.22.0.2" // TODO only needed for local k3d
 					}
 				}
 			}

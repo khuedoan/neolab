@@ -38,7 +38,7 @@ bundle: {
 					ingress: main: {
 						hosts: [{
 							// TODO domain from runtime
-							host: "blog.127-0-0-1.nip.io"
+							host: "blog.172-22-0-2.nip.io"
 							paths: [{
 								path:     "/"
 								pathType: "Prefix"
