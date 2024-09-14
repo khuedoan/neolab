@@ -29,6 +29,18 @@ bundle: {
 							email:    "admin@example.com"
 						}
 						config: {
+							database: {
+								DB_TYPE: "sqlite3"
+							}
+							session: {
+								PROVIDER: "memory"
+							}
+							cache: {
+								ADAPTER: "memory"
+							}
+							queue: {
+								TYPE: "level"
+							}
 							server: {
 								LANDING_PAGE: "explore"
 								ROOT_URL:     "http://gitea.172-22-0-2.nip.io"
@@ -58,6 +70,18 @@ bundle: {
 						podAnnotations: {
 							"linkerd.io/inject": "enabled"
 						}
+					}
+					"redis-cluster": {
+						enabled: false
+					}
+					redis: {
+						enabled: false
+					}
+					postgresql: {
+						enabled: false
+					}
+					"postgresql-ha": {
+						enabled: false
 					}
 				}
 			}
