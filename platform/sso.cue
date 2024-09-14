@@ -16,7 +16,7 @@ bundle: {
 						"linkerd.io/inject": "enabled"
 					}
 					config: {
-						issuer: "http://dex.172-22-0-2.nip.io" // TODO ??
+						issuer: "http://dex.localhost" // TODO ??
 						storage: {
 							type: "kubernetes"
 							config: inCluster: true
@@ -47,19 +47,19 @@ bundle: {
 							// Discovery URL: http://dex.dex:5556/.well-known/openid-configuration
 							id:   "gitea"
 							name: "Gitea"
-							redirectURIs: ["http://gitea.172-22-0-2.nip.io/user/oauth2/Dex/callback"]
+							redirectURIs: ["http://gitea.localhost/user/oauth2/Dex/callback"]
 							secret: "dev_secret_sso_gitea" // TODO autogen?
 						}, {
 							id:   "backstage"
 							name: "Backstage"
-							redirectURIs: ["http://backstage.172-22-0-2.nip.io/user/oauth2/Dex/callback"]
+							redirectURIs: ["http://backstage.localhost/user/oauth2/Dex/callback"]
 							secret: "dev_secret_sso_backstage" // TODO autogen?
 						}]
 					}
 					ingress: {
 						enabled: true
 						hosts: [{
-							host: "dex.172-22-0-2.nip.io" // TODO how to get this to work locally?
+							host: "dex.localhost" // TODO how to get this to work locally?
 							paths: [{
 								path:     "/"
 								pathType: "Prefix"

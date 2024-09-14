@@ -15,7 +15,7 @@ bundle: {
 					ingress: {
 						enabled: true
 						hosts: [{
-							host: "gitea.172-22-0-2.nip.io"
+							host: "gitea.localhost"
 							paths: [{
 								path:     "/"
 								pathType: "Prefix"
@@ -43,7 +43,7 @@ bundle: {
 							}
 							server: {
 								LANDING_PAGE: "explore"
-								ROOT_URL:     "http://gitea.172-22-0-2.nip.io"
+								ROOT_URL:     "http://gitea.localhost"
 								OFFLINE_MODE: true
 							}
 							repository: {
