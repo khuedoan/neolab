@@ -25,9 +25,13 @@ apps:
 hack:
 	sops exec-env ./secrets/${env}.enc.yaml 'cd hack && go run .'
 
+test:
+	cd test/e2e && go test
+
 fmt:
 	cue fmt ./...
 	cd hack && go fmt ./...
+	cd test/e2e && go fmt ./...
 
 # TODO better way to gen cert?
 # https://linkerd.io/2.15/tasks/generate-certificates
