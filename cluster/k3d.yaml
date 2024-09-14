@@ -24,3 +24,9 @@ ports:
   - port: 51820:51820
     nodeFilters:
       - loadbalancer
+registries:
+  config: |
+    mirrors:
+      "docker.io":
+        endpoint:
+          - http://docker-io:5000
