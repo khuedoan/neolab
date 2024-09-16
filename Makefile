@@ -10,17 +10,10 @@ default: cluster system platform apps hack
 cluster:
 	make -C cluster env=${env}
 
-system:
-	sops exec-env ./secrets/${env}.enc.yaml 'timoni bundle apply --runtime-from-env --file system/addons.cue'
-
-platform:
-	sops exec-env ./secrets/${env}.enc.yaml 'timoni bundle apply --runtime-from-env --file platform/gitea.cue'
-	sops exec-env ./secrets/${env}.enc.yaml 'timoni bundle apply --runtime-from-env --file platform/vpn.cue'
-	sops exec-env ./secrets/${env}.enc.yaml 'timoni bundle apply --runtime-from-env --file platform/sso.cue'
-
-apps:
-	sops exec-env ./secrets/${env}.enc.yaml 'timoni bundle apply --runtime-from-env --file apps/blog.cue'
-	sops exec-env ./secrets/${env}.enc.yaml 'timoni bundle apply --runtime-from-env --file apps/backstage.cue'
+system platform apps:
+	@for file in $(wildcard $@/*.cue); do \
+		sops exec-env ./secrets/${env}.enc.yaml "timoni bundle apply --runtime-from-env --file $$file"; \
+	done
 
 hack:
 	sops exec-env ./secrets/${env}.enc.yaml 'cd hack && go run .'
