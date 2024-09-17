@@ -49,11 +49,6 @@ bundle: {
 							name: "Gitea"
 							redirectURIs: ["http://gitea.localhost/user/oauth2/Dex/callback"]
 							secret: "dev_secret_sso_gitea" // TODO autogen?
-						}, {
-							id:   "backstage"
-							name: "Backstage"
-							redirectURIs: ["http://backstage.localhost/user/oauth2/Dex/callback"]
-							secret: "dev_secret_sso_backstage" // TODO autogen?
 						}]
 					}
 					ingress: {
