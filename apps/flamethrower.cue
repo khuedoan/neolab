@@ -20,8 +20,9 @@ bundle: {
 					}
 					controllers: main: containers: app: {
 						image: {
-							repository: "docker.io/khuedoan/flamethrower"
+							repository: "flamethrower"
 							tag:        "latest"
+							pullPolicy: "IfNotPresent"
 						}
 					}
 					service: main: {
