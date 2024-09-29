@@ -54,17 +54,6 @@ bundle: {
 				}
 			}
 		}
-		"linkerd-viz": {
-			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
-			namespace: "linkerd"
-			values: {
-				repository: url: "https://helm.linkerd.io/stable"
-				chart: {
-					name:    "linkerd-viz"
-					version: "30.12.11"
-				}
-			}
-		}
 		"ingress-nginx": {
 			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
 			namespace: "ingress-nginx"
