@@ -25,51 +25,65 @@ bundle: {
 				}
 			}
 		}
-		"linkerd-crds": {
+		"istio-base": {
 			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
-			namespace: "linkerd"
+			namespace: "istio-system"
 			values: {
-				repository: url: "https://helm.linkerd.io/stable"
+				repository: url: "https://istio-release.storage.googleapis.com/charts"
 				chart: {
-					name:    "linkerd-crds"
-					version: "1.8.0"
+					name:    "base"
+					version: "1.25.1"
 				}
 			}
 		}
-		"linkerd-control-plane": {
+		"istiod": {
 			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
-			namespace: "linkerd"
+			namespace: "istio-system"
 			values: {
-				repository: url: "https://helm.linkerd.io/stable"
+				repository: url: "https://istio-release.storage.googleapis.com/charts"
 				chart: {
-					name:    "linkerd-control-plane"
-					version: "1.16.11"
+					name:    "istiod"
+					version: "1.25.1"
 				}
 				helmValues: {
-					identityTrustAnchorsPEM: string @timoni(runtime:string:linkerd_ca_crt)
-					identity: issuer: tls: {
-						crtPEM: string @timoni(runtime:string:linkerd_issuer_crt)
-						keyPEM: string @timoni(runtime:string:linkerd_issuer_key)
-					}
+					profile: "ambient"
 				}
 			}
 		}
-		"ingress-nginx": {
+		"istio-cni": {
 			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
-			namespace: "ingress-nginx"
+			namespace: "istio-system"
 			values: {
-				repository: url: "https://kubernetes.github.io/ingress-nginx"
+				repository: url: "https://istio-release.storage.googleapis.com/charts"
 				chart: {
-					name:    "ingress-nginx"
-					version: "4.11.0"
+					name:    "cni"
+					version: "1.25.1"
 				}
 				helmValues: {
-					controller: {
-						ingressClassResource: default: true
-						podAnnotations: {
-							"linkerd.io/inject": "enabled"
-						}
-					}
+					profile: "ambient"
+					global: platform: "k3d"
+				}
+			}
+		}
+		"ztunnel": {
+			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
+			namespace: "istio-system"
+			values: {
+				repository: url: "https://istio-release.storage.googleapis.com/charts"
+				chart: {
+					name:    "ztunnel"
+					version: "1.25.1"
+				}
+			}
+		}
+		"istio-ingress": {
+			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
+			namespace: "istio-system"
+			values: {
+				repository: url: "https://istio-release.storage.googleapis.com/charts"
+				chart: {
+					name:    "gateway"
+					version: "1.25.1"
 				}
 			}
 		}
