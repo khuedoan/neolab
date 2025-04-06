@@ -11,17 +11,14 @@ bundle: {
 				}
 			}
 		}
-		"cert-manager": {
+		"monitoring": {
 			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
-			namespace: "cert-manager"
+			namespace: "monitoring"
 			values: {
-				repository: url: "https://charts.jetstack.io"
+				repository: url: "https://prometheus-community.github.io/helm-charts"
 				chart: {
-					name:    "cert-manager"
-					version: "1.x"
-				}
-				helmValues: {
-					installCRDs: true
+					name:    "kube-prometheus-stack"
+					version: "70.4.1"
 				}
 			}
 		}
@@ -84,6 +81,20 @@ bundle: {
 				chart: {
 					name:    "gateway"
 					version: "1.25.1"
+				}
+			}
+		}
+		"cert-manager": {
+			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
+			namespace: "cert-manager"
+			values: {
+				repository: url: "https://charts.jetstack.io"
+				chart: {
+					name:    "cert-manager"
+					version: "1.x"
+				}
+				helmValues: {
+					installCRDs: true
 				}
 			}
 		}
