@@ -68,7 +68,7 @@ bundle: {
 							}
 						}
 						podAnnotations: {
-							"linkerd.io/inject": "enabled"
+							"istio.io/dataplane-mode": "ambient"
 						}
 					}
 					"redis-cluster": {

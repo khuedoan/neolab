@@ -12,8 +12,8 @@ bundle: {
 					version: "0.19.0"
 				}
 				helmValues: {
-					podAnnotations: {
-						"linkerd.io/inject": "enabled"
+					podLabels: {
+						"istio.io/dataplane-mode": "ambient"
 					}
 					config: {
 						issuer: "http://dex.localhost" // TODO ??

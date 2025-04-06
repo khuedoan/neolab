@@ -20,14 +20,12 @@
             k3d
             k9s
             kubectl
-            linkerd
             neovim
             openssh
             opentofu
             pre-commit
             shellcheck
             sops
-            step-cli
             timoni
             wireguard-tools
             yamllint

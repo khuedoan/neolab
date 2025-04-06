@@ -12,8 +12,8 @@ bundle: {
 					version: "3.1.0"
 				}
 				helmValues: {
-					defaultPodOptions: annotations: {
-						"linkerd.io/inject": "enabled"
+					defaultPodOptions: labels: {
+						"istio.io/dataplane-mode": "ambient"
 					}
 					controllers: main: containers: app: {
 						image: {

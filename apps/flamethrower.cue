@@ -14,7 +14,7 @@ bundle: {
 				helmValues: {
 					defaultPodOptions: {
 						restartPolicy: "Always"
-						annotations: {
+						labels: {
 							"linkerd.io/inject": "enabled"
 						}
 					}

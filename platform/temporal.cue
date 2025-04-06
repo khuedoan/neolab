@@ -12,6 +12,9 @@ bundle: {
 					version: "0.58.0"
 				}
 				helmValues: {
+					additionalLabels: {
+						"istio.io/dataplane-mode": "ambient"
+					}
 					server: {
 						replicaCount: 1
 						config: namespaces: {

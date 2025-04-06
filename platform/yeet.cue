@@ -1,10 +1,10 @@
 bundle: {
 	apiVersion: "v1alpha1"
-	name:       "app-engine"
+	name:       "yeet"
 	instances: {
-		"app-engine": {
+		"yeet": {
 			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
-			namespace: "app-engine"
+			namespace: "yeet"
 			values: {
 				repository: url: "https://bjw-s.github.io/helm-charts"
 				chart: {
@@ -14,14 +14,14 @@ bundle: {
 				helmValues: {
 					defaultPodOptions: {
 						restartPolicy: "Always"
-						annotations: {
-							"linkerd.io/inject": "enabled"
+						labels: {
+							"istio.io/dataplane-mode": "ambient"
 						}
 					}
 					controllers: {
 						worker: containers: app: {
 							image: {
-								repository: "docker.io/khuedoan/app-engine"
+								repository: "docker.io/khuedoan/yeet"
 								tag:        "a941275"
 								pullPolicy: "Always"
 							}
