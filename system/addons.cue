@@ -84,6 +84,21 @@ bundle: {
 				}
 			}
 		}
+		"kiali-server": {
+			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
+			namespace: "istio-system"
+			values: {
+				repository: url: "https://kiali.org/helm-charts"
+				chart: {
+					name:    "kiali-server"
+					version: "2.7.1"
+				}
+				helmValues: {
+					auth: strategy: "anonymous"
+					external_services: prometheus: url: "http://monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090"
+				}
+			}
+		}
 		"cert-manager": {
 			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
 			namespace: "cert-manager"
