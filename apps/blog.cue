@@ -40,6 +40,7 @@ bundle: {
 						}
 					}
 					ingress: main: {
+						className: "istio"
 						hosts: [{
 							// TODO domain from runtime
 							host: "blog.localhost"

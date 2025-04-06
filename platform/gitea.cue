@@ -13,7 +13,8 @@ bundle: {
 				}
 				helmValues: {
 					ingress: {
-						enabled: true
+						enabled:   true
+						className: "istio"
 						hosts: [{
 							host: "gitea.localhost"
 							paths: [{

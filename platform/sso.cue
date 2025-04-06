@@ -52,7 +52,8 @@ bundle: {
 						}]
 					}
 					ingress: {
-						enabled: true
+						enabled:   true
+						className: "istio"
 						hosts: [{
 							host: "dex.localhost" // TODO how to get this to work locally?
 							paths: [{

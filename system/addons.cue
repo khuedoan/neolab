@@ -51,8 +51,7 @@ bundle: {
 					version: "1.25.1"
 				}
 				helmValues: {
-					profile:               "ambient"
-					ingressControllerMode: "DEFAULT"
+					profile: "ambient"
 				}
 			}
 		}

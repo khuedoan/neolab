@@ -30,7 +30,8 @@ bundle: {
 					prometheus: enabled:     false
 					grafana: enabled:        false
 					web: ingress: {
-						enabled: true
+						enabled:   true
+						className: "istio"
 						hosts: [
 							"temporal.localhost",
 						]
