@@ -27,6 +27,15 @@ bundle: {
 						podMonitorSelectorNilUsesHelmValues:     false
 						probeSelectorNilUsesHelmValues:          false
 					}
+					grafana: {
+						ingress: {
+							enabled:          true
+							ingressClassName: "istio"
+							hosts: [
+								"grafana.localhost",
+							]
+						}
+					}
 				}
 			}
 		}
@@ -108,7 +117,18 @@ bundle: {
 				}
 				helmValues: {
 					auth: strategy: "anonymous"
-					external_services: prometheus: url: "http://monitoring-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090"
+					external_services: {
+						prometheus: url:  "http://monitoring-kube-prometheus-prometheus.monitoring:9090"
+						grafana: enabled: false
+					}
+					deployment: ingress: {
+						enabled:    true
+						class_name: "istio"
+					}
+					server: {
+						web_fqdn: "kiali.localhost"
+						web_root: "/"
+					}
 				}
 			}
 		}
