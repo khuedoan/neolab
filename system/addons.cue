@@ -20,6 +20,14 @@ bundle: {
 					name:    "kube-prometheus-stack"
 					version: "70.4.1"
 				}
+				helmValues: {
+					prometheus: prometheusSpec: {
+						ruleSelectorNilUsesHelmValues: false
+						serviceMonitorSelectorNilUsesHelmValues: false
+						podMonitorSelectorNilUsesHelmValues: false
+						probeSelectorNilUsesHelmValues: false
+					}
+				}
 			}
 		}
 		"istio-base": {
