@@ -22,10 +22,10 @@ bundle: {
 				}
 				helmValues: {
 					prometheus: prometheusSpec: {
-						ruleSelectorNilUsesHelmValues: false
+						ruleSelectorNilUsesHelmValues:           false
 						serviceMonitorSelectorNilUsesHelmValues: false
-						podMonitorSelectorNilUsesHelmValues: false
-						probeSelectorNilUsesHelmValues: false
+						podMonitorSelectorNilUsesHelmValues:     false
+						probeSelectorNilUsesHelmValues:          false
 					}
 				}
 			}
@@ -51,7 +51,8 @@ bundle: {
 					version: "1.25.1"
 				}
 				helmValues: {
-					profile: "ambient"
+					profile:               "ambient"
+					ingressControllerMode: "DEFAULT"
 				}
 			}
 		}
@@ -89,6 +90,11 @@ bundle: {
 				chart: {
 					name:    "gateway"
 					version: "1.25.1"
+				}
+				helmValues: {
+					labels: {
+						istio: "ingressgateway"
+					}
 				}
 			}
 		}

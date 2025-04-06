@@ -20,19 +20,19 @@ bundle: {
 						config: namespaces: {
 							create: true
 							namespace: [{
-								name: "default"
+								name:      "default"
 								retention: "3d"
 							}]
 						}
 					}
 					cassandra: config: cluster_size: 1
 					elasticsearch: replicas: 1
-					prometheus: enabled: false
-					grafana: enabled: false
+					prometheus: enabled:     false
+					grafana: enabled:        false
 					web: ingress: {
 						enabled: true
 						hosts: [
-							"temporal.localhost"
+							"temporal.localhost",
 						]
 					}
 				}
