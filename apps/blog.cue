@@ -15,16 +15,20 @@ bundle: {
 				}
 				helmValues: {
 					defaultPodOptions: labels: {
-						"istio.io/dataplane-mode": "ambient"
+						"istio.io/dataplane-mode":   "ambient"
+						"app.kubernetes.io/version": "6.8.0"
 					}
-					controllers: main: containers: app: {
-						image: {
-							// TODO
-							repository: "stefanprodan/podinfo"
-							tag:        "latest"
-						}
-						env: {
-							TESTFOO: string @timoni(runtime:string:testfoo)
+					controllers: main: {
+						strategy: "RollingUpdate"
+						containers: app: {
+							image: {
+								// TODO
+								repository: "stefanprodan/podinfo"
+								tag:        "6.8.0"
+							}
+							env: {
+								TESTFOO: string @timoni(runtime:string:testfoo)
+							}
 						}
 					}
 					service: main: {
