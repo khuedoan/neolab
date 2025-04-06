@@ -1,10 +1,10 @@
 bundle: {
 	apiVersion: "v1alpha1"
-	name:       "yeet"
+	name:       "app-engine"
 	instances: {
-		"yeet": {
+		"app-engine": {
 			module: url: "oci://ghcr.io/stefanprodan/modules/flux-helm-release"
-			namespace: "yeet"
+			namespace: "app-engine"
 			values: {
 				repository: url: "https://bjw-s.github.io/helm-charts"
 				chart: {
@@ -21,12 +21,12 @@ bundle: {
 					controllers: {
 						worker: containers: app: {
 							image: {
-								repository: "docker.io/khuedoan/yeet"
-								tag:        "a941275"
+								repository: "khuedoan/app-engine"
+								tag:        "5603f92"
 								pullPolicy: "Always"
 							}
 							env: {
-								TEMPORAL_HOST: "temporal-frontend.temporal:7233"
+								TEMPORAL_URL: "http://temporal-frontend.temporal:7233"
 							}
 						}
 					}
