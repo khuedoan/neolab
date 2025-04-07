@@ -19,30 +19,40 @@ bundle: {
 						}
 					}
 					controllers: {
-						worker: containers: {
-							app: {
-								image: {
-									repository: "khuedoan/app-engine"
-									tag:        "5603f92"
-									pullPolicy: "Always"
+						worker: {
+							strategy: "RollingUpdate"
+							containers: {
+								app: {
+									image: {
+										repository: "khuedoan/app-engine"
+										tag:        "09a2131"
+										pullPolicy: "Always"
+									}
+									env: {
+										TEMPORAL_URL: "http://temporal-frontend.temporal:7233"
+									}
 								}
-								env: {
-									TEMPORAL_URL: "http://temporal-frontend.temporal:7233"
-									DOCKER_HOST: "tcp://127.0.0.1:2375"
-								}
-							}
-							docker: {
-								image: {
-									repository: "docker.io/library/docker"
-									tag:        "27-dind"
-								}
-								command: ["dockerd", "--host=tcp://127.0.0.1:2375"]
-								securityContext: {
-									privileged: true
+								docker: {
+									image: {
+										repository: "docker.io/library/docker"
+										tag:        "27-dind"
+									}
+									securityContext: {
+										privileged: true
+									}
 								}
 							}
 						}
 
+					}
+					persistence: {
+						socket: {
+							type: "emptyDir"
+							globalMounts: [{
+								path:    "/var/run"
+								subPath: "docker.sock"
+							}]
+						}
 					}
 				}
 			}
