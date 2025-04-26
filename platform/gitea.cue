@@ -16,7 +16,7 @@ bundle: {
 						enabled:   true
 						className: "istio"
 						hosts: [{
-							host: "gitea.localhost"
+							host: "gitea.127-0-0-1.nip.io"
 							paths: [{
 								path:     "/"
 								pathType: "Prefix"
@@ -44,7 +44,7 @@ bundle: {
 							}
 							server: {
 								LANDING_PAGE: "explore"
-								ROOT_URL:     "http://gitea.localhost"
+								ROOT_URL:     "http://gitea.127-0-0-1.nip.io"
 								OFFLINE_MODE: true
 							}
 							repository: {

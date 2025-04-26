@@ -26,7 +26,7 @@ bundle: {
 						className: "istio"
 						pathtype:  "Prefix"
 						hosts: [{
-							host: "registry.localhost"
+							host: "registry.127-0-0-1.nip.io"
 							paths: [{
 								path: "/"
 							}]

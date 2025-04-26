@@ -33,7 +33,7 @@ bundle: {
 						enabled:   true
 						className: "istio"
 						hosts: [
-							"temporal.localhost",
+							"temporal.127-0-0-1.nip.io",
 						]
 					}
 				}

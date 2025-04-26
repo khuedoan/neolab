@@ -16,7 +16,7 @@ bundle: {
 						"istio.io/dataplane-mode": "ambient"
 					}
 					config: {
-						issuer: "http://dex.localhost" // TODO ??
+						issuer: "http://dex.127-0-0-1.nip.io" // TODO ??
 						storage: {
 							type: "kubernetes"
 							config: inCluster: true
@@ -47,7 +47,7 @@ bundle: {
 							// Discovery URL: http://dex.dex:5556/.well-known/openid-configuration
 							id:   "gitea"
 							name: "Gitea"
-							redirectURIs: ["http://gitea.localhost/user/oauth2/Dex/callback"]
+							redirectURIs: ["http://gitea.127-0-0-1.nip.io/user/oauth2/Dex/callback"]
 							secret: "dev_secret_sso_gitea" // TODO autogen?
 						}]
 					}
@@ -55,7 +55,7 @@ bundle: {
 						enabled:   true
 						className: "istio"
 						hosts: [{
-							host: "dex.localhost" // TODO how to get this to work locally?
+							host: "dex.127-0-0-1.nip.io" // TODO how to get this to work locally?
 							paths: [{
 								path:     "/"
 								pathType: "Prefix"

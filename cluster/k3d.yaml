@@ -30,6 +30,6 @@ registries:
       "docker.io":
         endpoint:
           - http://docker-io:5000
-      "registry.localhost":
+      "registry.127-0-0-1.nip.io":
         endpoint:
           - http://localhost:30000

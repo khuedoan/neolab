@@ -43,7 +43,7 @@ bundle: {
 						className: "istio"
 						hosts: [{
 							// TODO domain from runtime
-							host: "blog.localhost"
+							host: "blog.127-0-0-1.nip.io"
 							paths: [{
 								path:     "/"
 								pathType: "Prefix"

@@ -32,7 +32,7 @@ bundle: {
 							enabled:          true
 							ingressClassName: "istio"
 							hosts: [
-								"grafana.localhost",
+								"grafana.127-0-0-1.nip.io",
 							]
 						}
 					}
@@ -126,7 +126,7 @@ bundle: {
 						class_name: "istio"
 					}
 					server: {
-						web_fqdn: "kiali.localhost"
+						web_fqdn: "kiali.127-0-0-1.nip.io"
 						web_root: "/"
 					}
 				}

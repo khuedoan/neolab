@@ -8,7 +8,7 @@ import (
 )
 
 func TestGiteaHealth(t *testing.T) {
-	resp, err := http.Get("http://gitea.localhost/api/healthz") // TODO get domain name automatically
+	resp, err := http.Get("http://gitea.127-0-0-1.nip.io/api/healthz") // TODO get domain name automatically
 	if err != nil {
 		t.Fatal(err)
 	}
