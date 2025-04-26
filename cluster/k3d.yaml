@@ -30,3 +30,6 @@ registries:
       "docker.io":
         endpoint:
           - http://docker-io:5000
+      "registry.localhost":
+        endpoint:
+          - http://localhost:30000

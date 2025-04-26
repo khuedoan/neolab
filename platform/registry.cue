@@ -16,6 +16,11 @@ bundle: {
 						"istio.io/dataplane-mode": "ambient"
 					}
 					image: repository: "ghcr.io/project-zot/zot"
+					service: {
+						type:     "NodePort"
+						port:     5000
+						nodePort: 30000 // The range of valid ports is 30000-32767
+					}
 					ingress: {
 						enabled:   true
 						className: "istio"
