@@ -10,7 +10,12 @@ default: cluster system platform apps hack
 cluster:
 	make -C cluster env=${env}
 
-system platform apps:
+system:
+	sops exec-env ./secrets/${env}.enc.yaml "timoni bundle apply --runtime-from-env --file system/addons.cue";
+	kubectl apply -f hack/todo.yaml
+	sops exec-env ./secrets/${env}.enc.yaml "timoni bundle apply --runtime-from-env --file system/registry.cue";
+
+platform apps:
 	@for file in $(wildcard $@/*.cue); do \
 		sops exec-env ./secrets/${env}.enc.yaml "timoni bundle apply --runtime-from-env --file $$file"; \
 	done
