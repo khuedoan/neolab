@@ -15,7 +15,14 @@ system:
 	kubectl apply -f hack/todo.yaml
 	sops exec-env ./secrets/${env}.enc.yaml "timoni bundle apply --runtime-from-env --file system/registry.cue";
 
-platform apps:
+platform:
+	sops exec-env ./secrets/${env}.enc.yaml "timoni bundle apply --runtime-from-env --file platform/temporal.cue";
+	sops exec-env ./secrets/${env}.enc.yaml "timoni bundle apply --runtime-from-env --file platform/app-engine.cue";
+	sops exec-env ./secrets/${env}.enc.yaml "timoni bundle apply --runtime-from-env --file platform/gitea.cue";
+	sops exec-env ./secrets/${env}.enc.yaml "timoni bundle apply --runtime-from-env --file platform/sso.cue";
+	sops exec-env ./secrets/${env}.enc.yaml "timoni bundle apply --runtime-from-env --file platform/vpn.cue";
+
+apps:
 	@for file in $(wildcard $@/*.cue); do \
 		sops exec-env ./secrets/${env}.enc.yaml "timoni bundle apply --runtime-from-env --file $$file"; \
 	done
